@@ -1,0 +1,13 @@
+FROM alpine
+
+RUN ["apk", "update"]
+RUN ["apk", "add", "curl"]
+
+# BrowserstackLocal
+# browserstack-local package expects binary installed in /root/.browserstack/BrowserstackLocal
+RUN ["mkdir", "/root/.browserstack"]
+RUN ["curl", "-o", "/root/.browserstack/BrowserstackLocal", "https://s3.amazonaws.com/browserStack/browserstack-local/BrowserStackLocal-linux-x64"]
+RUN ["chmod", "0755", "/root/.browserstack/BrowserstackLocal"]
+ENV PATH /root/.browserstack:$PATH
+
+CMD ["/root/.browserstack/BrowserstackLocal", "-V"]

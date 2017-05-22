@@ -1,0 +1,10 @@
+version: '3'
+services:
+  test-alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile.alpine
+  test-debian:
+    build:
+      context: .
+      dockerfile: Dockerfile.debian
